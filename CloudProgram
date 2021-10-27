@@ -1,0 +1,61 @@
+class Cloud 
+{
+  int myX, myY, myWidth, myHeight, mySpeed, myColor, myOpacity;
+  Cloud()
+  {
+    myX = (int)(Math.random()*400)-50;
+    myY = (int)(Math.random()*200)-100;
+    myWidth = (int)(Math.random()*80)+40;
+    myHeight = (int)(Math.random()*30)+10;
+    mySpeed = 1;
+    myColor = color(255);
+    myOpacity = (int)(Math.random()*100);
+  }
+  void show()
+  {
+    noStroke();
+    fill(myColor, myOpacity);
+    ellipse(myX, myY, myWidth, myHeight);
+  }
+  void drift()
+  {
+    myX = myX + mySpeed;
+    if (myX >= 300)
+    myX = -150;
+  }
+}
+Cloud [] bob;
+void setup()
+{
+  size(300,300);
+  bob = new Cloud[100];
+  for (int i = 0; i < bob.length; i++){
+    bob[i] = new StormCloud();
+  }
+  for (int i = 10; i < bob.length; i++){
+    bob[i] = new Cloud();
+  }
+}
+
+void draw()
+{
+  background(200,200,255);
+  fill(0, 150, 50);
+  rect(0,200,300,200);
+  for (int i = 0; i < bob.length; i++){
+    bob[i].drift();
+    bob[i].show();
+  }
+}
+
+class StormCloud extends Cloud{
+  StormCloud()
+  {
+    myX = (int)(Math.random()*100)+300;
+    myY = (int)(Math.random()*30)+40;
+    myColor = (int)(Math.random()*20)+80;
+    mySpeed = 2;
+    myOpacity = (int)(Math.random()*70)+100;
+    myWidth = (int)(Math.random()*80)+160;
+  }
+}
