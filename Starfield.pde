@@ -8,12 +8,16 @@ class Particle
     myY = 150.0;
     myColor = color(255,255,255);
     myAngle = Math.random()*2*Math.PI;
-    mySpeed = Math.random()*10;
+    mySpeed = Math.random()*10 + 1;
   }
   void move ()
   {
     myX = myX + Math.cos(myAngle) * mySpeed;
+      if (myX > 300)
+        myX = 150.0;
     myY = myY + Math.sin(myAngle) * mySpeed;
+      if (myY > 300)
+        myY = 150.0;
   }
   void show()
   {
@@ -37,4 +41,3 @@ void draw()
     star[i].show();
   }
 }
-    
