@@ -1,14 +1,15 @@
 class Particle
 {
   double myX, myY, myAngle, mySpeed;
-  int myColor;
+  int myColor, mySize;
   Particle()
   {
     myX = 150.0;
     myY = 150.0;
     myColor = color(255,255,255);
     myAngle = Math.random()*2*Math.PI;
-    mySpeed = Math.random()*10 + 1;
+    mySpeed = Math.random()*5 + 1;
+    mySize = 5;
   }
   void move ()
   {
@@ -18,25 +19,46 @@ class Particle
     myY = myY + Math.sin(myAngle) * mySpeed;
       if (myY > 300)
         myY = 150.0;
+    myX = myX + Math.cos(myAngle) * mySpeed;
+      if (myX < 0)
+        myX = 150.0;  
+    myY = myY + Math.sin(myAngle) * mySpeed;
+      if (myY < 0)
+        myY = 150.0;
   }
   void show()
   {
     fill(myColor);
-    ellipse((float)myX,(float)myY,5,5);
+    ellipse((float)myX,(float)myY,mySize,mySize);
   }
 }
-Particle [] star = new Particle[500];
-void setup()
-{
-  size(300,300);
-  for (int i = 0; i < star.length; i++)
-    star[i] = new Particle();
+class oddBall extends Particle {
+  oddBall() {
+    myX = 150.0;
+    myY = 150.0;
+    myColor = color((int)Math.random()*256, (int)Math.random()*256, (int)Math.random()*256);
+    myAngle = Math.random()*1.5*Math.PI;
+    mySpeed = Math.random()*10 + 1;
+    mySize = 10;
+  }
 }
+Particle [] star = new Particle[200];
+
+void setup () {
+  size(300,300);
+  for (int i = 0; i < 190; i++)
+    star[i] = new Particle();
+  for (int i = 190; i < star.length; i++)
+    star[i] = new oddBall();
+}
+
 void draw()
 {
   background(0);
   for (int i = 0; i < star.length; i++)
   {
+    star[190].move();
+    star[190].show();
     star[i].move();
     star[i].show();
   }
