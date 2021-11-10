@@ -15,10 +15,14 @@ class Particle
   {
     myX = myX + Math.cos(myAngle) * mySpeed;
     myY = myY + Math.sin(myAngle) * mySpeed;
-    if (myX > 300 || myX < 0)
+    if (myX > 300 || myX < 0){
         myX = 150.0;
-    if (myY > 300 || myY < 0)
         myY = 150.0;
+    }
+    if (myY > 300 || myY < 0){
+        myY = 150.0;
+        myX = 150.0;
+    }
     
   }
   void show()
@@ -43,7 +47,9 @@ class OddballParticle extends Particle
     myY = myY + mySpeed;
     if (myX > 200 || myX < 100)
         myX = 150.0;
+        myY = 150.0;
     if (myY > 200 || myY < 100)
+        myY = 150.0;
         myY = 150.0;
   }
   void show()
