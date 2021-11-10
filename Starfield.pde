@@ -54,6 +54,7 @@ class OddballParticle extends Particle
   }
   void show()
   {
+    noStroke();
     fill(myColor);
     rect((float)myX,(float)myY,mySize,mySize);
   }
